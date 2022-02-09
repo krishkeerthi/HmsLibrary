@@ -5,7 +5,7 @@ import com.krish.hms.library.helper.readFile
 import com.krish.hms.library.helper.writeFile
 import com.krish.hms.library.model.Consultation
 
-internal class ConsultationRepository() {
+internal class ConsultationRepository {
     val consultations = mutableMapOf<String, Consultation>()
 
     init {
@@ -30,7 +30,6 @@ internal class ConsultationRepository() {
 
     fun addAssessment(consultationId: String, assessment: String){
         val consultation = consultations[consultationId] ?: return
-//        return uiHandler.writeData("Consultation id does not exists".changeColor(LogLevel.ERROR))
         consultation.assessment = assessment
 
         writeFile("Consultations.txt", consultation.toString())

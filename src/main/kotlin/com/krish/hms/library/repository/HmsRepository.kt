@@ -64,11 +64,17 @@ object HmsRepository {
 
     // For case registration
 
-    fun getCase(caseId: String) = caseRepository.getCase(caseId)
+    fun getCase(caseId: String): Result<Case, Exception>{
+        val case = caseRepository.getCase(caseId)
+        return if(case == null)
+            Failure(Exception("Case does not exist"))
+        else
+            Success(case)
+    }
 
-    fun createNewCase(ssn: Int): Case?{
+    fun createNewCase(ssn: Int): Result<Case, Exception>{
         if(!checkPatientExistence(ssn))
-            return null
+            return Failure(Exception("Patient does not exist, register patient first"))
 
         val patientId = patientRepository.getPatientId(ssn)!! // We ensure that patient id exists by after condition
 
@@ -76,7 +82,7 @@ object HmsRepository {
         caseRepository.addCase(case)
 
         addOrCreate(patientsCases, patientId, case.caseId)
-        return case
+        return Success(case)
     }
 
 
@@ -183,7 +189,13 @@ object HmsRepository {
         return Success(consultations)
     }
 
-    fun getConsultation(consultationId: String) = consultationRepository.getConsultation(consultationId)
+    fun getConsultation(consultationId: String): Result<Consultation, Exception>{
+        val consultation = consultationRepository.getConsultation(consultationId)
+        return if(consultation == null)
+            Failure(Exception("Consultation does not exist"))
+        else
+            Success(consultation)
+    }
 
     fun getMedicines(consultationId: String) : Result<List<String>, Exception> {
         if(!consultationsMedicines.containsKey(consultationId))
@@ -196,7 +208,13 @@ object HmsRepository {
         return Success(medicines)
     }
 
-    fun getMedicine(medicineId: String) = medicineRepository.getMedicine(medicineId)
+    fun getMedicine(medicineId: String): Result<Medicine, Exception>{
+        val medicine = medicineRepository.getMedicine(medicineId)
+        return if(medicine == null)
+            Failure(Exception("Medicine does not exist"))
+        else
+            Success(medicine)
+    }
 
     // Private methods
     private fun getPendingConsultations(doctorId: String): Int{

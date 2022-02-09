@@ -7,7 +7,7 @@ import com.krish.hms.library.helper.writeFile
 import com.krish.hms.library.model.Case
 
 
-internal class CaseRepository() {
+internal class CaseRepository {
     val cases = mutableMapOf<String, Case>()
 
     init {

@@ -5,7 +5,7 @@ import com.krish.hms.library.helper.readFile
 import com.krish.hms.library.helper.writeFile
 import com.krish.hms.library.model.Medicine
 
-internal class MedicineRepository() {
+internal class MedicineRepository {
     val medicines = mutableMapOf<String, Medicine>()
 
     init {

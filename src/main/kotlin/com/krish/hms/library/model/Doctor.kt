@@ -1,10 +1,7 @@
 
 package com.krish.hms.library.model
 
-import com.krish.hms.library.helper.getBloodGroup
-import com.krish.hms.library.helper.getDepartment
-import com.krish.hms.library.helper.getGender
-import com.krish.hms.library.helper.toInt
+import com.krish.hms.library.helper.*
 import io.konform.validation.Validation
 import io.konform.validation.jsonschema.maxLength
 import io.konform.validation.jsonschema.maximum
@@ -15,7 +12,6 @@ import java.time.LocalTime
 
 class Doctor(
     name: String,
-    age: Int,
     gender: Gender,
     dob: LocalDate,
     address: String,
@@ -28,27 +24,26 @@ class Doctor(
     var startTime: LocalTime,
     var endTime: LocalTime,
 
-    ) : Person(name, age, gender, dob, address, contact, bloodGroup, Ssn){
+    ) : Person(name, gender, dob, address, contact, bloodGroup, Ssn){
 
     constructor(fields: List<String>):
             this(
                 fields[1],
-                fields[2].toInt(),
-                getGender(fields[3].toInt()),
-                LocalDate.parse(fields[4]),
+                getGender(fields[2].toInt()),
+                LocalDate.parse(fields[3]),
+                fields[4],
                 fields[5],
-                fields[6],
-                getBloodGroup(fields[7].toInt()),
-                fields[8].toInt(),
+                getBloodGroup(fields[6].toInt()),
+                fields[7].toInt(),
                 fields[0],
-                getDepartment(fields[9].toInt()),
-                fields[10].toInt(),
+                getDepartment(fields[8].toInt()),
+                fields[9].toInt(),
+                LocalTime.parse(fields[10]),
                 LocalTime.parse(fields[11]),
-                LocalTime.parse(fields[12])
-            )
+                )
 
     override fun toString(): String {
-        return "$doctorId|$name|$age|${gender.ordinal}|$dob|$address|$contact|${bloodGroup.ordinal}|$Ssn|${department.ordinal}|" +
+        return "$doctorId|$name|${gender.ordinal}|$dob|$address|$contact|${bloodGroup.ordinal}|$Ssn|${department.ordinal}|" +
                 "$yearsOfExperience|$startTime|$endTime\n"
     }
 

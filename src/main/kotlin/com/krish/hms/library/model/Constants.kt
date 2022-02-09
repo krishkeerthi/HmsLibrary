@@ -5,7 +5,7 @@ enum class Modules {
     ADDDOCTOR,
     ADDPATIENT,
     REGISTERCASE,
-    `HANDLE CONSULTATION`,
+    HANDLECONSULTATION,
     LISTDOCTORS,
     LISTPATIENTS,
     LISTCASES,
@@ -50,6 +50,8 @@ enum class MedicineType{
     SYRUP,
     INHALER,
     CREAM,
+    OINTMENT,
+    POWDER,
 }
 
 enum class Meridian{

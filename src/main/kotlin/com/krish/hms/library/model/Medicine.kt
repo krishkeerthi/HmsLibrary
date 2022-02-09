@@ -19,7 +19,6 @@ class Medicine(
     val afternoon: Boolean,
     val night: Boolean,
 ){
-
     constructor(fields: List<String>) :
             this(
                 fields[0],
@@ -44,7 +43,6 @@ class Medicine(
                 minLength(2)
                 maxLength(100)
             }
-
         }
     }
 }

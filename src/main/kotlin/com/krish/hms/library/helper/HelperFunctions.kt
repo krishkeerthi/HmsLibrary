@@ -72,6 +72,8 @@ fun getMedicineType(value: Int) : MedicineType {
         2 -> MedicineType.SYRUP
         3 -> MedicineType.INHALER
         4 -> MedicineType.CREAM
+        5 -> MedicineType.OINTMENT
+        6 -> MedicineType.POWDER
         else -> MedicineType.TABLET
     }
 }
@@ -103,7 +105,7 @@ fun getModule(value: Int): Modules{
         0 -> Modules.ADDDOCTOR
         1 -> Modules.ADDPATIENT
         2 -> Modules.REGISTERCASE
-        3 -> Modules.`HANDLE CONSULTATION`
+        3 -> Modules.HANDLECONSULTATION
         4 -> Modules.LISTDOCTORS
         5 -> Modules.LISTPATIENTS
         6 -> Modules.LISTCASES
